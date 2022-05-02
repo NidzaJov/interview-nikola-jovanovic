@@ -1,0 +1,14 @@
+http://localhost {
+	handle /api/* {
+		reverse_proxy node-api:4000 {
+		header_down Strict-Transport-Security max-age=3156000;
+		}
+	}
+
+	handle {
+		root * /srv
+		try_files {path} /index.html
+		file_server
+	}
+		
+}

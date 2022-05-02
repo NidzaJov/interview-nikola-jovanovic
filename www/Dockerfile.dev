@@ -1,0 +1,19 @@
+FROM node:16.13.0
+
+WORKDIR /www
+
+COPY package.json .
+
+RUN npm install
+
+COPY  . .
+
+EXPOSE 3000
+
+ENV NODE_ENV=development
+
+ENV PORT=3000
+
+ENV CHOKIDAR_USEPOLLING=true
+
+CMD ["npm", "start"]

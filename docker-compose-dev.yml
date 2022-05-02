@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+
+  caddy:
+    image: caddy
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      #- $PWD/site:/srv  
+    depends_on:
+      - node-api
+      - react-app
+
+  node-api:
+    build: 
+      context: ./api
+      args:
+        NODE_ENV: development
+    image: nidza81/node-api-image
+    container_name: node-api
+    ports: 
+      - "4000:4000"
+    volumes:
+      - "./api:/api/"
+      - "/api/node_modules"
+    command: "npm run dev"
+
+  react-app:
+
+    stdin_open: true
+    tty: true
+    build: 
+      context: ./www
+      dockerfile: ./Dockerfile.dev
+    image: nidza81/react-app-image
+    container_name: react-app
+    ports: 
+      - "3000:3000"
+    volumes:
+      - "./www:/www/"
+      - "/www/node_modules"
+    #environment:
+    #  - CHOKIDAR_USEPOLLING=true
+      #- NODE_ENV=development
+
+  

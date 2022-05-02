@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+  react-app:
+    stdin_open: true
+    tty: true
+    
+    
+    #environment:
+    #  - CHOKIDAR_USEPOLLING=true
+      #- NODE_ENV=development
+  
+  caddy:
+    image: caddy
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./www/build:/srv
+      #- caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+    external: true
+  caddy_config: 
