@@ -4,7 +4,7 @@ const port = process.env.PORT || 9000;
 
 app.get('/api', function(req, res) {
     console.log('Get is called');
-    res.json({ message: 'docker is easy with nodemon' })
+    res.json({ message: 'docker is easy with nodemon!' })
     res.end();
 })
 
