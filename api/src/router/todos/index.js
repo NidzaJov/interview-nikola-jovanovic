@@ -11,15 +11,14 @@ todosRouter.get('/', async function(req, res) {
 })
 
 todosRouter.get('/:todoId', async function(req, res) {
-    const todoId = req.params['todoId'];
+    const { todoId } = req.params
     const todo = await todosService.findById(todoId);
     res.json(todo);
 })
 
-todosRouter.post('/', async function(res, req) {
+todosRouter.post('/', async function(req, res) {
     try {
         const todo = req.body;
-        console.info('Create todo got: ', todo);
         await todosService.create(todo);
         res.sendStatus(201);
     } catch (e) {
@@ -41,11 +40,22 @@ todosRouter.put('/', async function(req, res) {
 
 todosRouter.patch('/', async function(req, res) {
     try {
-        const { _id, field, value, action } = req.body;
+        const { _id, field, value } = req.body;
         await todosService.updateField(_id, field, value);
         res.sendStatus(200);
     } catch (e) {
         console.error('Todo not patched', e);
+        res.sendStatus(400);
+    }
+})
+
+todosRouter.delete('/:todoId', async function(req, res) {
+    try {
+        const { todoId } = req.params;
+        await todosService.delete(todoId);
+        res.sendStatus(204);
+    } catch (e) {
+        console.error('Todo not deleted', e);
         res.sendStatus(400);
     }
 })

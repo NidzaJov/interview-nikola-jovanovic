@@ -42,8 +42,9 @@ class TodosService {
     }
 
     async updateField(todoId, field, value) {
+        console.info('Update field got: ', todoId, field, value)
         return await TodosService.collection.updateOne({
-            _id: new ObjectID(_id)
+            _id: new ObjectID(todoId)
         }, {
             $set: { [field]: value}
         })
