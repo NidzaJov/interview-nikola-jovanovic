@@ -8,19 +8,19 @@ export const TodoForm = (props) => {
     }
 
     return (
-        <div>
-            <label>
-                Title
-                <input
-                 type="text"
-                 value={textValue}
-                 onChange={e => setTextValue(e.target.value)}
-                 onKeyUp={e => {
-                     if (e.key === 'Enter') {
-                         handleAddTodo();
-                     }
+        <div classname="todo-form section amber darken-2 input-field">
+            <label className="row">
+                <i className="material-icons prefix col s1">mode_edit</i>
+                <input 
+                classname="col s4"
+                type="text" 
+                value={textValue} 
+                onChange={e => setTextValue(e.target.value)} 
+                onKeyUp={e => { if (e.key ==='Enter') {
+                        handleAddTodo();
+                    }
                  }}
-                 ></input>
+                ></input>
             </label>
             <button onClick={handleAddTodo}>Add items</button>
 

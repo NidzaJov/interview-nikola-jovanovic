@@ -1,10 +1,8 @@
-import Todo from './Todo'
-
-export const TodoList = () => {
+export const TodoList = (props) => {
 
     return (
-        <div>
-            <h1>title</h1>
+        <div className="todo-list section green lighten-1">
+            {props.children}
         </div>
     )
 }

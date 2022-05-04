@@ -1,13 +1,10 @@
-import { TodoForm } from'../components/TodoForm';
-import { TodoList } from '../components/TodoList';
 import { MainLayout } from './MainLayout';
 
-export const Todos = () => {
+export const Todos = (props) => {
 
     return (
         <MainLayout>
-            <TodoForm />
-            <TodoList></TodoList>
+           {props.children}
         </MainLayout>
     )
 }

@@ -19,13 +19,15 @@ export const Todo = (props) => {
 
 
     return (
-        <div>
+        <div className="todo row brown lighten-3 valign-wrapper hoverable">
             <input 
+                className="s2"
                 type="checkbox" 
                 checked={props.todo.done}
                 onChange={props.switchDone}
                 />
             {editMode && <input
+                className="col s3"
                 type="text"
                 value={editText}
                 onKeyUp={(e) => {
@@ -36,10 +38,10 @@ export const Todo = (props) => {
                 }
             }
              onChange={(e) => setEditText(e.target.value)}/>}
-            {!editMode && <span>{props.todo.title}</span>}
-            {!editMode && <button onClick={() => startEdit()}>Edit</button>}
-            {editMode && <button onClick ={() => cancelEdit()}>Cancel</button>}
-            <button onClick={props.deleteTodo}>X</button>
+            {!editMode && <span className="col s3 left-align truncate">{props.todo.title}</span>}
+            {!editMode && <button className="col s1" onClick={() => startEdit()}>Edit</button>}
+            {editMode && <button className="col s1" onClick ={() => cancelEdit()}>Cancel</button>}
+            <button className="col s1" onClick={props.deleteTodo}>X</button>
         </div>
     )
 }

@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import  todosService from './services/todosService';
 import { Todo } from './components/Todo'
 import { TodoForm } from './components/TodoForm';
+import { Todos } from './views/Todos';
+import { TodoList } from './components/TodoList'
 
 
 function App() {
@@ -67,9 +69,15 @@ function App() {
   ))
 
   return (
-    <div className="App">
-      <TodoForm addTodo={todoText => createTodo(todoText)}/>
-      {mappedTodos}
+    <div className="App row blue lighten-5">
+      <Todos>
+        <TodoForm addTodo={todoText => createTodo(todoText)}/>
+        <TodoList>
+          {mappedTodos}
+        </TodoList>
+        
+      </Todos>
+      
     </div>
   );
 }
