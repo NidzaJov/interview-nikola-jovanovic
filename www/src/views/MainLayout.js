@@ -1,12 +1,11 @@
 
 
-export const MainLayout = () => {
+export const MainLayout = (props) => {
 
     return (
         <div>
             <h1>Layout title</h1>
-            <button></button>
-            <div></div>
+            {props.children}
         </div>
     )
 }

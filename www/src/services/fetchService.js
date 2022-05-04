@@ -18,7 +18,7 @@ class FetchService {
     }
 
     static async putRequest(url, payload) {
-        return await fetch(`${config.API_URL}/${url}`, {
+        return await fetch(`${config.API_URL}/${url}/${payload._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

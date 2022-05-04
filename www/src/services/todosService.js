@@ -39,6 +39,15 @@ class TodosService {
             throw new Error('Patching todo failed')
         }
     }
+
+    async editTodo(payload) {
+        const result = await FetchService.putRequest('todos', payload)
+        if (result.ok) {
+            return true;
+        } else {
+            throw new Error('Editing todo failed');
+        }
+    }
 }
 
 export default new TodosService();

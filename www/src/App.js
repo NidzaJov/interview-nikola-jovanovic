@@ -16,10 +16,18 @@ function App() {
     fetchTodos();
   }, []);
 
+  const editTodo = (todo) => {
+    (async (todo) => {
+      await todosService.editTodo(todo)
+    }) (todo);
+    fetchTodos();
+  }
+
   const mappedTodos = todos.map((todo, idx) => (
     <Todo 
     key={idx}
     todo={todo}
+    editTodoCallback = {editTodo}
     deleteTodo = {() => removeTodo(todo)}
     switchDone = {() => toggleTodo(todo)}
     />

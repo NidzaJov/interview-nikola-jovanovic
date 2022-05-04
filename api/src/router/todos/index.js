@@ -27,9 +27,10 @@ todosRouter.post('/', async function(req, res) {
     }
 })
 
-todosRouter.put('/', async function(req, res) {
+todosRouter.put('/:todoId', async function(req, res) {
     try {
-        const todo = req.body;
+        const { todoId } = req.params
+        const todo = { ...req.body, todoId };
         await todosService.update(todo);
         res.sendStatus(200);
     } catch (e) {
