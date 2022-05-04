@@ -30,7 +30,7 @@ todosRouter.post('/', async function(req, res) {
 todosRouter.put('/:todoId', async function(req, res) {
     try {
         const { todoId } = req.params
-        const todo = { ...req.body, todoId };
+        const todo = { ...req.body, _id: todoId };
         await todosService.update(todo);
         res.sendStatus(200);
     } catch (e) {

@@ -7,14 +7,11 @@ import { TodoForm } from './components/TodoForm';
 
 function App() {
   const [todos, setTodos] = useState([]);
+  
   const fetchTodos = async () => {
     let data = await todosService.getAllTodos();
     setTodos(data);
   }
-
-  useEffect(() => {
-    fetchTodos();
-  }, []);
 
   const editTodo = (todo) => {
     (async (todo) => {
@@ -22,16 +19,6 @@ function App() {
     }) (todo);
     fetchTodos();
   }
-
-  const mappedTodos = todos.map((todo, idx) => (
-    <Todo 
-    key={idx}
-    todo={todo}
-    editTodoCallback = {editTodo}
-    deleteTodo = {() => removeTodo(todo)}
-    switchDone = {() => toggleTodo(todo)}
-    />
-  ))
 
   const removeTodo = (todoToRemove) => {
     let todoId = todoToRemove._id.toString();
@@ -64,6 +51,20 @@ function App() {
 
     fetchTodos();
   }
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
+
+  const mappedTodos = todos.map((todo, idx) => (
+    <Todo 
+    key={idx}
+    todo={todo}
+    editTodoCallback = {editTodo}
+    deleteTodo = {() => removeTodo(todo)}
+    switchDone = {() => toggleTodo(todo)}
+    />
+  ))
 
   return (
     <div className="App">
