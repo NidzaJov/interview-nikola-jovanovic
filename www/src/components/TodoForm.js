@@ -8,7 +8,7 @@ export const TodoForm = (props) => {
     }
 
     return (
-        <div classname="todo-form section amber darken-2 input-field">
+        <div classname="col s12 amber darken-2 input-field">
             <label className="row">
                 <i className="material-icons prefix col s1">mode_edit</i>
                 <input 
@@ -22,7 +22,10 @@ export const TodoForm = (props) => {
                  }}
                 ></input>
             </label>
-            <button onClick={handleAddTodo}>Add items</button>
+            <button className="btn btn-large" type="submit" onClick={handleAddTodo}>
+                Add items
+                <i class="material-icons right">send</i>
+            </button>
 
         </div>
     )

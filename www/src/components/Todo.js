@@ -19,13 +19,17 @@ export const Todo = (props) => {
 
 
     return (
-        <div className="todo row brown lighten-3 valign-wrapper hoverable">
-            <input 
-                className="s2"
-                type="checkbox" 
-                checked={props.todo.done}
-                onChange={props.switchDone}
-                />
+        <div className="card horizontal lighten-3 valign-wrapper hoverable row">
+            
+           <div className="card-action col s2">
+                <input 
+                    className='filled-in'
+                    type="checkbox" 
+                    checked={props.todo.done}
+                    onChange={props.switchDone}
+                     />
+            </div>
+            <div className='card-content col s6'>
             {editMode && <input
                 className="col s3"
                 type="text"
@@ -39,9 +43,17 @@ export const Todo = (props) => {
             }
              onChange={(e) => setEditText(e.target.value)}/>}
             {!editMode && <span className="col s3 left-align truncate">{props.todo.title}</span>}
-            {!editMode && <button className="col s1" onClick={() => startEdit()}>Edit</button>}
-            {editMode && <button className="col s1" onClick ={() => cancelEdit()}>Cancel</button>}
-            <button className="col s1" onClick={props.deleteTodo}>X</button>
+            </div>
+            <div classname='col s4 card-action'>
+                {!editMode && <button className="btn btn-small" onClick={() => startEdit()}>
+                    Edit 
+                    <i className="material-icons">edit</i>
+                    </button>
+                }
+                {editMode && <button className="btn btn-small yellow lighten-1 black-text" onClick ={() => cancelEdit()}>Cancel</button>}
+                <button className="btn btn-small red darken-1" onClick={props.deleteTodo}><i className="material-icons large">clear</i></button>
+            </div>
+            
         </div>
     )
 }
